@@ -1,19 +1,19 @@
 #' fars_read
 #'
-#' A function for reading in FARS data, it checks if a given file exists. 
+#' A function for reading in FARS data, it checks if a given file exists.
 #' If it does then it reads it in using the read_csv function.
 #' If it does not then it returns 'does not exist'
 #'
-#' @param filename A character string giving the location of the file 
+#' @param filename A character string giving the location of the file
 #'
 #' @return a data frame as read by read_csv with default options.
 #'
 #' @examples
 #' fars_read("accident_2013.csv.bz2")
-#' 
+#'
 #' @export
 fars_read <- function(filename) {
-  
+
   if(!file.exists(filename))
     stop("file '", filename, "' does not exist")
   data <- suppressMessages({
@@ -23,7 +23,7 @@ fars_read <- function(filename) {
 }
 
 #' make_filename
-#' 
+#'
 #' This function takes a year as a character string, coerces it to an integer, then uses sprintf to generate a filename for one of the FARS datasets.
 #' This function has no input sanitation and will allow any year string and any character.
 #'
@@ -35,12 +35,21 @@ fars_read <- function(filename) {
 #' @examples
 #' make_filename("2013")
 make_filename <- function(year) {
-  year <- as.integer(year)
-  sprintf("accident_%d.csv.bz2", year)
+
+  year <-
+    as.integer(year)
+
+  #data is downloaded to the data subdirectory by 'get_fars_data', so insert this.
+  fname <-
+    file.path(
+      "data",
+      sprintf("accident_%d.csv.bz2", year))
+
+  return(fname)
 }
 
 #' fars_read_years
-#' 
+#'
 #' A wrapper function for applying the `fars_read` & `make_filename` to read multiple years of data using lapply.
 #' If an invalid year string is provided it will return an error
 #'
@@ -52,13 +61,13 @@ make_filename <- function(year) {
 #' @examples
 #' years <- c("2013","2014")
 #' fars_read_years(years)
-#' 
+#'
 fars_read_years <- function(years) {
   lapply(years, function(year) {
     file <- make_filename(year)
     tryCatch({
       dat <- fars_read(file)
-      dplyr::mutate(dat, year = year) %>% 
+      dplyr::mutate(dat, year = year) %>%
         dplyr::select(MONTH, year)
     }, error = function(e) {
       warning("invalid year: ", year)
@@ -68,32 +77,32 @@ fars_read_years <- function(years) {
 }
 
 #' fars_summarize_years
-#' 
+#'
 #' A summary function to display the number of rows of data for each month of each year.
 #'
 #' @param years a list of years (strings) to summarise data for.
 #'
-#' @return a tibble of the number of datapoints with columns for each year and rows for each month  
+#' @return a tibble of the number of datapoints with columns for each year and rows for each month
 #' @export
 #' @importFrom magrittr %>%
-#' 
+#'
 #' @examples
 #' years <- c("2013","2014")
 #' fars_summarize_years(years)
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
-  dplyr::bind_rows(dat_list) %>% 
-    dplyr::group_by(year, MONTH) %>% 
+  dplyr::bind_rows(dat_list) %>%
+    dplyr::group_by(year, MONTH) %>%
     dplyr::summarize(n = n()) %>%
     tidyr::spread(year, n)
 }
 
 #' fars_map_state
-#' 
+#'
 #' A function which uses the maps package to plot the locations accidents in the FARS dataset for a given year and state.
-#' This function will return an error if the provided state number is invalid, 
+#' This function will return an error if the provided state number is invalid,
 #' or if there are no accidents in the dataset for the given state and year combination.
-#' 
+#'
 #' Accidents with a longitude >900 or a latitude >90 have their lat/long set to NA
 #'
 #' @param state.num the number of the state in the FARS data - coerced to an integer
@@ -104,12 +113,12 @@ fars_summarize_years <- function(years) {
 #'
 #' @examples
 #' fars_map_state('51','2014)
-#' 
+#'
 fars_map_state <- function(state.num, year) {
   filename <- make_filename(year)
   data <- fars_read(filename)
   state.num <- as.integer(state.num)
-  
+
   if(!(state.num %in% unique(data$STATE)))
     stop("invalid STATE number: ", state.num)
   data.sub <- dplyr::filter(data, STATE == state.num)
