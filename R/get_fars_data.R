@@ -6,7 +6,7 @@
 #' @param force
 #'
 #'
-#' @export
+#' @export get_fars_data
 #'
 #' @examples
 #' get_fars_data(force = TRUE)
