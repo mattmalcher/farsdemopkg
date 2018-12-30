@@ -1,0 +1,52 @@
+---
+title: "How to use farsdemopkg"
+author: "Matthew Malcher"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Vignette Info
+This basic vignette shall demonstrate the functionality of the farsdemopkg
+
+# Get Data
+The FARS functions provided assume that the FARS data will be present, this supplementary function downloads the data so the vignette works.
+```{r}
+farsdemopkg::get_fars_data(force = TRUE) # download coursera fars data to working directory
+```
+
+# Demo Functions
+
+## Make filename & read data
+```{r}
+path2k13 <- 
+  make_filename("2013")
+
+df_2k13 <-
+  fars_read(path2k13)
+```
+
+## Read multiple years
+```{r}
+years <- 
+  c("2013","2014")
+
+df_years <-
+  fars_read_years(years)
+```
+
+## summarise years
+```{r}
+fars_summarize_years(years)
+```
+
