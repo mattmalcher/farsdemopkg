@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Matthew Malcher
 Maintainer: Matthew Malcher <matt@notreal.net> 
 Description: Package created as part of the coursera 'r-packages' 
-    course https://www.coursera.org/learn/r-packages
+    course https://www.coursera.org/learn/r-packages.
 License: License: GPL-3
 Encoding: UTF-8
 LazyData: true
