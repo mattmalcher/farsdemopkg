@@ -84,7 +84,6 @@ fars_read_years <- function(years) {
 #'
 #' @return a tibble of the number of datapoints with columns for each year and rows for each month
 #' @export
-#' @importFrom magrittr %>%
 #'
 #' @examples
 #' years <- c("2013","2014")
