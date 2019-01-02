@@ -112,7 +112,7 @@ fars_summarize_years <- function(years) {
 #' @export
 #'
 #' @examples
-#' fars_map_state('51','2014)
+#' fars_map_state('51','2014')
 #'
 fars_map_state <- function(state.num, year) {
   filename <- make_filename(year)
