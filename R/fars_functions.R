@@ -60,7 +60,7 @@ make_filename <- function(year) {
 #'
 #' @examples
 #' years <- c("2013","2014")
-#' fars_read_years(years)
+#' \dontrun{fars_read_years(years)}
 #'
 fars_read_years <- function(years) {
   lapply(years, function(year) {
@@ -87,7 +87,7 @@ fars_read_years <- function(years) {
 #'
 #' @examples
 #' years <- c("2013","2014")
-#' fars_summarize_years(years)
+#' \dontrun{fars_summarize_years(years)}
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
   dplyr::bind_rows(dat_list) %>%
@@ -111,7 +111,7 @@ fars_summarize_years <- function(years) {
 #' @export
 #'
 #' @examples
-#' fars_map_state('51','2014')
+#' \dontrun{fars_map_state('51','2014')}
 #'
 fars_map_state <- function(state.num, year) {
   filename <- make_filename(year)
