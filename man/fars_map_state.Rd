@@ -16,7 +16,7 @@ a map of the state, with accident locations plottec
 }
 \description{
 A function which uses the maps package to plot the locations accidents in the FARS dataset for a given year and state.
-This function will return an error if the provided state number is invalid, 
+This function will return an error if the provided state number is invalid,
 or if there are no accidents in the dataset for the given state and year combination.
 }
 \details{

@@ -13,7 +13,7 @@ fars_read(filename)
 a data frame as read by read_csv with default options.
 }
 \description{
-A function for reading in FARS data, it checks if a given file exists. 
+A function for reading in FARS data, it checks if a given file exists.
 If it does then it reads it in using the read_csv function.
 If it does not then it returns 'does not exist'
 }
