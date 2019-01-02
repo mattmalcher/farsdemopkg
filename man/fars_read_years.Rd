@@ -18,6 +18,6 @@ If an invalid year string is provided it will return an error
 }
 \examples{
 years <- c("2013","2014")
-fars_read_years(years)
+\dontrun{fars_read_years(years)}
 
 }

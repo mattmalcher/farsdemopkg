@@ -23,6 +23,6 @@ or if there are no accidents in the dataset for the given state and year combina
 Accidents with a longitude >900 or a latitude >90 have their lat/long set to NA
 }
 \examples{
-fars_map_state('51','2014')
+\dontrun{fars_map_state('51','2014')}
 
 }

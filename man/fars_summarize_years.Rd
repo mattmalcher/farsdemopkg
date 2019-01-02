@@ -17,5 +17,5 @@ A summary function to display the number of rows of data for each month of each 
 }
 \examples{
 years <- c("2013","2014")
-fars_summarize_years(years)
+\dontrun{fars_summarize_years(years)}
 }
