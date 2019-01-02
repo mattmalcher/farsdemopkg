@@ -69,8 +69,7 @@ fars_read_years <- function(years) {
     tryCatch({
       dat <- fars_read(file)
 
-      dat %>%
-        dplyr::mutate(.data, year = year) %>%
+      dplyr::mutate(dat, year = year) %>%
         dplyr::select(.data, MONTH, year)
 
     }, error = function(e) {
