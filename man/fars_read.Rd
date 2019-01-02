@@ -18,6 +18,6 @@ If it does then it reads it in using the read_csv function.
 If it does not then it returns 'does not exist'
 }
 \examples{
-fars_read("accident_2013.csv.bz2")
+\dontrun{fars_read("accident_2013.csv.bz2")}
 
 }

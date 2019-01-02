@@ -9,7 +9,7 @@
 #' @return a data frame as read by read_csv with default options.
 #'
 #' @examples
-#' fars_read("accident_2013.csv.bz2")
+#' \dontrun{fars_read("accident_2013.csv.bz2")}
 #'
 #' @export
 fars_read <- function(filename) {
