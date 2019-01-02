@@ -5,7 +5,7 @@
 \title{get_fars_data}
 \usage{
 get_fars_data(force = FALSE,
-  durl = "https://d3c33hcgiwev3.cloudfront.net/_e1adac2a5f05192dc8780f3944feec13_fars_data.zip?Expires=1546300800&Signature=byljyRPskWKpmmyUfzF1hMKln-IdQOoa4vCnVh82WqFBP4HgnTT~3kjr~XysTzFdVuS-6bTvLZ6V3b1jp3Cg4Gq797jTAGqK3NPfi1oRyDGm9MjBerNNIS8MiMcSJqFgInBXDxFXr-SOqFLE9GLUDNKoCPmb3qynYfZRV06FtQU_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A")
+  durl = "https://d3c33hcgiwev3.cloudfront.net/_e1adac2a5f05192dc8780f3944feec13_fars_data.zip?Expires=1546560000&Signature=gabwk0MIC8yBFZFr75x5P-SbDIu7suFq3gOm1Aef1U4SwQtPUavEm8o3YB107kJcPRZXf2ZPADrcISbSJ4TXnEN725ewt8YPZBajP0LtZCtBTqNA~P5UYbVd620rw4ew~ZnXqoBO1Ofr6hY0LP4Kv5ZEV2TtN75hgRX75JAyCcE_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A")
 }
 \arguments{
 \item{force}{}
