@@ -57,6 +57,7 @@ make_filename <- function(year) {
 #'
 #' @return returns a list containing data (or an error) for each of the years passed in.
 #' @export
+#' @importFrom rlang .data
 #'
 #' @examples
 #' years <- c("2013","2014")
@@ -67,8 +68,11 @@ fars_read_years <- function(years) {
     file <- make_filename(year)
     tryCatch({
       dat <- fars_read(file)
-      dplyr::mutate(dat, year = year) %>%
-        dplyr::select(MONTH, year)
+
+      dat %>%
+        dplyr::mutate(.data, year = year) %>%
+        dplyr::select(.data, MONTH, year)
+
     }, error = function(e) {
       warning("invalid year: ", year)
       return(NULL)
@@ -84,16 +88,19 @@ fars_read_years <- function(years) {
 #'
 #' @return a tibble of the number of datapoints with columns for each year and rows for each month
 #' @export
+#' @importFrom rlang .data
 #'
 #' @examples
 #' years <- c("2013","2014")
 #' \dontrun{fars_summarize_years(years)}
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
-  dplyr::bind_rows(dat_list) %>%
-    dplyr::group_by(year, MONTH) %>%
-    dplyr::summarize(n = n()) %>%
-    tidyr::spread(year, n)
+
+  dat_list %>%
+  dplyr::bind_rows(.data) %>%
+    dplyr::group_by(.data, year, MONTH) %>%
+    dplyr::summarize(.data, n = n()) %>%
+    tidyr::spread(.data, year, n)
 }
 
 #' fars_map_state
@@ -109,6 +116,7 @@ fars_summarize_years <- function(years) {
 #'
 #' @return a map of the state, with accident locations plottec
 #' @export
+#' @importFrom rlang .data
 #'
 #' @examples
 #' \dontrun{fars_map_state('51','2014')}
@@ -120,7 +128,11 @@ fars_map_state <- function(state.num, year) {
 
   if(!(state.num %in% unique(data$STATE)))
     stop("invalid STATE number: ", state.num)
-  data.sub <- dplyr::filter(data, STATE == state.num)
+
+  data.sub <-
+    data %>%
+    dplyr::filter(.data$STATE == state.num)
+
   if(nrow(data.sub) == 0L) {
     message("no accidents to plot")
     return(invisible(NULL))
