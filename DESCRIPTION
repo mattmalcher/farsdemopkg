@@ -16,7 +16,8 @@ Imports:
     tidyr (>= 0.8.2),
     maps,
     graphics,
-    magrittr
+    magrittr,
+    utils
 Suggests: 
     knitr,
     rmarkdown,

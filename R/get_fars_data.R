@@ -3,10 +3,12 @@
 #' This function downloads the fars data to the local apps directory of the current user (if given permission to do so)
 #' Function created to allow vignette to be built
 #'
-#' @param force
-#'
+#' @param force Flag for use when programming - skips y/n dialogue before downloading file
+#' @param durl URL for Coursera FARS data
 #'
 #' @export get_fars_data
+#'
+#' @importFrom utils download.file select.list unzip
 #'
 #' @examples
 #' get_fars_data(force = TRUE)
