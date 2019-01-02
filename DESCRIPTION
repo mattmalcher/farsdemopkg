@@ -17,9 +17,11 @@ Imports:
     maps,
     graphics,
     magrittr,
-    utils
+    utils,
+    rlang (>= 0.1.2)
 Suggests: 
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    roxygen2
 VignetteBuilder: knitr
