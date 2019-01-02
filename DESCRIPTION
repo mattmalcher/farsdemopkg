@@ -14,7 +14,7 @@ Imports:
     dplyr (>= 0.7.0)
     tidyr (>= 0.8.2)
     maps (>= 3.3.0)
-    graphics (>= 3.5.2)
+    graphics (>= 3.5.0)
 Suggests: 
     knitr,
     rmarkdown,
