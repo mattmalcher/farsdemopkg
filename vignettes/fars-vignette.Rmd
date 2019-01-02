@@ -18,11 +18,15 @@ knitr::opts_chunk$set(
 
 # Vignette Info
 This basic vignette shall demonstrate the functionality of the farsdemopkg
+```{r}
+library(farsdemopkg)
+```
+
 
 # Get Data
 The FARS functions provided assume that the FARS data will be present, this supplementary function downloads the data so the vignette works.
 ```{r}
-farsdemopkg::get_fars_data(force = TRUE) # download coursera fars data to working directory
+get_fars_data(force = TRUE) # download coursera fars data to working directory
 ```
 
 # Demo Functions
